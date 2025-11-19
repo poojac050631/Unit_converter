@@ -4,38 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unit Converter – Java Project</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            background: #f7f7f7;
-        }
-        h1, h2 {
-            color: #2c3e50;
-        }
-        code {
-            background: #eee;
-            padding: 3px 5px;
-            border-radius: 4px;
-            font-size: 15px;
-        }
-        pre {
-            background: #eee;
-            padding: 12px;
-            border-radius: 5px;
-            overflow-x: auto;
-        }
-        .container {
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        ul {
-            margin-top: -10px;
-        }
-    </style>
 </head>
 <body>
 
