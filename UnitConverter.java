@@ -11,7 +11,6 @@ import java.util.Map;
  */
 public class UnitConverter extends JFrame {
 
-    // UI Components
     private JComboBox<String> categoryBox;
     private JComboBox<String> fromUnitBox;
     private JComboBox<String> toUnitBox;
@@ -20,7 +19,7 @@ public class UnitConverter extends JFrame {
     private JButton convertButton;
     private JLabel errorLabel;
 
-    // Data for units
+  
     private static final String[] CATEGORIES = {"Length", "Weight", "Temperature"};
     
     private static final String[] LENGTH_UNITS = {
@@ -72,10 +71,10 @@ public class UnitConverter extends JFrame {
         setTitle("Universal Unit Converter");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(500, 400);
-        setLocationRelativeTo(null); // Center on screen
+        setLocationRelativeTo(null); 
         setLayout(new BorderLayout(10, 10));
 
-        // Main Panel with padding
+  
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new GridBagLayout());
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -83,12 +82,12 @@ public class UnitConverter extends JFrame {
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        // --- Header ---
+     
         JLabel titleLabel = new JLabel("Unit Converter", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         add(titleLabel, BorderLayout.NORTH);
 
-        // --- Category Selection ---
+       
         gbc.gridx = 0; gbc.gridy = 0;
         mainPanel.add(new JLabel("Category:"), gbc);
 
@@ -97,7 +96,6 @@ public class UnitConverter extends JFrame {
         gbc.gridx = 1; gbc.gridy = 0;
         mainPanel.add(categoryBox, gbc);
 
-        // --- Input Value ---
         gbc.gridx = 0; gbc.gridy = 1;
         mainPanel.add(new JLabel("Input Value:"), gbc);
 
@@ -105,7 +103,7 @@ public class UnitConverter extends JFrame {
         gbc.gridx = 1; gbc.gridy = 1;
         mainPanel.add(inputField, gbc);
 
-        // --- From Unit ---
+       
         gbc.gridx = 0; gbc.gridy = 2;
         mainPanel.add(new JLabel("From:"), gbc);
 
@@ -113,7 +111,7 @@ public class UnitConverter extends JFrame {
         gbc.gridx = 1; gbc.gridy = 2;
         mainPanel.add(fromUnitBox, gbc);
 
-        // --- To Unit ---
+    
         gbc.gridx = 0; gbc.gridy = 3;
         mainPanel.add(new JLabel("To:"), gbc);
 
@@ -121,7 +119,6 @@ public class UnitConverter extends JFrame {
         gbc.gridx = 1; gbc.gridy = 3;
         mainPanel.add(toUnitBox, gbc);
 
-        // --- Convert Button ---
         convertButton = new JButton("Convert");
         convertButton.setBackground(new Color(66, 135, 245));
         convertButton.setForeground(Color.WHITE);
@@ -132,7 +129,6 @@ public class UnitConverter extends JFrame {
         gbc.gridwidth = 2;
         mainPanel.add(convertButton, gbc);
 
-        // --- Result Display ---
         gbc.gridx = 0; gbc.gridy = 5;
         gbc.gridwidth = 2;
         mainPanel.add(new JLabel("Result:"), gbc);
@@ -145,7 +141,6 @@ public class UnitConverter extends JFrame {
         gbc.gridwidth = 2;
         mainPanel.add(resultField, gbc);
 
-        // Error label
         errorLabel = new JLabel("");
         errorLabel.setForeground(Color.RED);
         errorLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -154,7 +149,6 @@ public class UnitConverter extends JFrame {
 
         add(mainPanel, BorderLayout.CENTER);
 
-        // Initialize unit dropdowns
         updateUnitDropdowns();
     }
 
@@ -187,9 +181,6 @@ public class UnitConverter extends JFrame {
         }
     }
 
-    /**
-     * Main conversion logic handler.
-     */
     private void performConversion(ActionEvent e) {
         errorLabel.setText("");
         resultField.setText("");
@@ -220,7 +211,6 @@ public class UnitConverter extends JFrame {
                     break;
             }
 
-            // Format result to avoid long decimal places if possible
             if (result == (long) result) {
                 resultField.setText(String.format("%d", (long) result));
             } else {
@@ -235,27 +225,24 @@ public class UnitConverter extends JFrame {
         }
     }
 
-    // --- Logic for Length Conversion ---
     private double convertLength(double value, String from, String to) {
         // Convert to base (Meters) then to target
         double inMeters = value * lengthFactors.get(from);
         return inMeters / lengthFactors.get(to);
     }
 
-    // --- Logic for Weight Conversion ---
     private double convertWeight(double value, String from, String to) {
         // Convert to base (Kilograms) then to target
         double inKilos = value * weightFactors.get(from);
         return inKilos / weightFactors.get(to);
     }
 
-    // --- Logic for Temperature Conversion ---
+  
     private double convertTemperature(double value, String from, String to) {
         if (from.equals(to)) return value;
 
         double celsius = 0;
 
-        // Convert to Celsius first
         switch (from) {
             case "Celsius":
                 celsius = value;
@@ -268,7 +255,6 @@ public class UnitConverter extends JFrame {
                 break;
         }
 
-        // Convert from Celsius to target
         switch (to) {
             case "Celsius":
                 return celsius;
@@ -282,10 +268,9 @@ public class UnitConverter extends JFrame {
     }
 
     public static void main(String[] args) {
-        // Run UI in the Event Dispatch Thread
         SwingUtilities.invokeLater(() -> {
             try {
-                // Set system look and feel for better integration
+                
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             } catch (Exception e) {
                 e.printStackTrace();
@@ -293,4 +278,5 @@ public class UnitConverter extends JFrame {
             new UnitConverter().setVisible(true);
         });
     }
+
 }
